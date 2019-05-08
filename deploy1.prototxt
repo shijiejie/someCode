@@ -1,0 +1,36 @@
+name: "GoogleNet"
+input: "data"
+input_shape {
+  dim: 1
+  dim: 1
+  dim: 320
+  dim: 240
+}
+layer {
+  name: "conv1/3x3_s1"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv1/3x3_s1"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 1
+    pad: 1
+    kernel_size: 3
+    stride: 2
+    weight_filler {
+      type: "xavier"
+      std: 0.1
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.2
+    }
+  }
+}
